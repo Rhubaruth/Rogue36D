@@ -1,16 +1,20 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from player import Player
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    player1 = Player("TheChosenOne", 20, 5)
+    player2 = Player("TheDestroyer", 6, 6, attack_power=6, defense_power=12)
+
+    # Game Loop
+    while player1.is_alive() and player2.is_alive():
+        player1.attack(player2)
+        if not player2.is_alive():
+            print(f"\n{player1.name} wins!")
+            break
+
+        player2.attack(player1)
+        if not player1.is_alive():
+            print(f"\n{player2.name} wins!")
+            break
