@@ -1,10 +1,10 @@
 from player import Player
-from dice import roll_dice
+from character_base import roll_dice, Attributes
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
 
-    player1 = Player("Warrior", roll_dice(2)+6, roll_dice(3), roll_dice(2)+6, roll_dice(2)+3, roll_dice(2)+3)
+    player1 = Player("Warrior", Attributes(roll_dice(2)+6, roll_dice(3), roll_dice(2)+6, roll_dice(2)+3, roll_dice(2)+3))
     player2 = Player("Rogue", roll_dice(2)+3, roll_dice(2)+6, roll_dice(2)+6, roll_dice(3), roll_dice(2)+3)
 
     for p in [player1, player2]:
@@ -15,7 +15,6 @@ if __name__ == '__main__':
          INT = {p.intelligence} \n\
          WIS = {p.wisdom} \n\
          ")
-
 
     # Game Loop
     while player1.is_alive() and player2.is_alive():

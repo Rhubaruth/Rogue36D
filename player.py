@@ -1,28 +1,25 @@
-from dice import roll_dice
-
+from dataclasses import dataclass
+from character_base import roll_dice, Attributes
 
 BASE_HEALTH = 10
 BASE_DAMAGE = 2
 BASE_ARMOR = 12
 
 
+@dataclass
 class Player:
-    def __init__(self, name,
-                 strength: int = 9, dexterity: int = 9, constitution: int = 9,
-                 intelligence: int = 9, wisdom: int = 9):
+    attributes: Attributes
+
+    def __init__(self, name, attributes: Attributes):
         self.name = name
 
-        self.strength = strength
-        self.dexterity = dexterity
-        self.constitution = constitution
-        self.intelligence = intelligence
-        self.wisdom = wisdom
+        self.attributes = attributes
 
-        self.max_health = BASE_HEALTH + (self.constitution - 10) // 2
+        self.max_health = BASE_HEALTH + self.attributes.get_modifier('con')
         self.health = self.max_health
         self.damage = BASE_DAMAGE
-        self.attack_power = max((self.strength - 10) // 2, (self.dexterity - 10) // 2)
-        self.defense_power = BASE_ARMOR + (self.dexterity - 10) // 2
+        self.attack_power = max(self.attributes.get_modifier('str'), self.attributes.get_modifier('dex'))
+        self.defense_power = BASE_ARMOR + self.attributes.get_modifier('dex')
 
     def attack(self, target):
         hit_roll = roll_dice(3) + self.attack_power
