@@ -1,5 +1,5 @@
-from player import Player, roll_dice
-
+from player import Player
+from dice import roll_dice
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
