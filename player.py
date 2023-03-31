@@ -18,7 +18,7 @@ class Player:
         self.max_health = BASE_HEALTH + self.attributes.get_modifier('con')
         self.health = self.max_health
         self.damage = BASE_DAMAGE
-        self.attack_power = max(self.attributes.get_modifier('str'), self.attributes.get_modifier('dex'))
+        self.attack_power = self.attributes.get_modifier('str')
         self.defense_power = BASE_ARMOR + self.attributes.get_modifier('dex')
 
     def attack(self, target):
