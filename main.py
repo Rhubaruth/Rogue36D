@@ -2,6 +2,7 @@ import sys
 
 from player import Player
 from character_base import roll_dice, Attributes
+import classes
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
@@ -24,14 +25,17 @@ if __name__ == '__main__':
         match str(input()).upper():
             case '1':
                 print(f"You have chosen Warrior")
+                player = classes.Warrior()
                 break
 
             case '2':
                 print(f"You have chosen Rogue")
+                player = classes.Rogue()
                 break
 
             case '3':
                 print(f"You have chosen Wizard")
+                player = classes.Wizard()
                 break
 
             case 'E':
@@ -41,9 +45,15 @@ if __name__ == '__main__':
             case _:
                 print(f"Wrong input")
 
+    game_over = False
+    print(player)
+
+    while not game_over:
+
+        pass
 
 
-    # Game Loop
+    # Battle Loop
     # while player1.is_alive() and player2.is_alive():
     #     player1.attack(player2)
     #     if not player2.is_alive():

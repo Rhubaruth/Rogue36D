@@ -4,7 +4,7 @@ from character_base import roll_dice, Attributes
 BASE_HEALTH = 10
 BASE_DAMAGE = 2
 BASE_ARMOR = 12
-
+BASE_MANA = 0
 
 @dataclass
 class Player:
@@ -20,6 +20,8 @@ class Player:
         self.damage = BASE_DAMAGE
         self.attack_power = self.attributes.get_modifier('str')
         self.defense_power = BASE_ARMOR + self.attributes.get_modifier('dex')
+
+        self.mana = BASE_MANA + self.attributes.get_modifier('int')
 
     def attack(self, target):
         hit_roll = roll_dice(3) + self.attack_power
